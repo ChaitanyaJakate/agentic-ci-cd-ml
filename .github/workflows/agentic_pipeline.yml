@@ -1,0 +1,34 @@
+
+name: Agentic AI CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  agentic-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run agentic decision logic
+      run: python scripts/agent_decision.py "${{ github.event.head_commit.message }}"
+
+    - name: Execute selected model pipeline
+      run: |
+        if [ -f model_type.txt ]; then
+          TYPE=$(cat model_type.txt)
+          echo "Running model: $TYPE"
+          python scripts/run_${TYPE}.py
+        else
+          echo "No model_type.txt found"
