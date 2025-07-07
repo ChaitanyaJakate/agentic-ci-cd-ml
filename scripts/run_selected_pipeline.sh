@@ -7,3 +7,4 @@ if [ -f model_type.txt ]; then
 else
   echo "No model_type.txt found"
 fi
+
