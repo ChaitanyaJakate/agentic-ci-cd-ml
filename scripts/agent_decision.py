@@ -1,6 +1,9 @@
+import os
+os.environ["USE_TF"] = "0"  # Prevent importing TensorFlow/Keras
+
 from transformers import pipeline
 
-# Force PyTorch framework to avoid Keras/TensorFlow
+# Force PyTorch backend
 classifier = pipeline(
     "zero-shot-classification",
     model="facebook/bart-large-mnli",
