@@ -26,14 +26,5 @@ jobs:
       run: python scripts/agent_decision.py "${{ github.event.head_commit.message }}"
 
     - name: Execute selected model pipeline
-      shell: bash
-      run: |
-        if [ -f model_type.txt ]; then
-          TYPE=$(cat model_type.txt)
-          echo "Running model: $TYPE"
-          python scripts/run_${TYPE}.py
-        else
-          echo "No model_type.txt found"
-        fi
-
+      run: bash scripts/run_selected_pipeline.sh
 
