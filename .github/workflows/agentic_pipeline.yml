@@ -33,4 +33,5 @@ jobs:
           python scripts/run_${TYPE}.py
         else
           echo "No model_type.txt found"
+        fi
 
