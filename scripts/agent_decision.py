@@ -1,9 +1,8 @@
 import os
-os.environ["USE_TF"] = "0"  # Prevent importing TensorFlow/Keras
+os.environ["USE_TF"] = "0"  # Prevent Hugging Face from touching TensorFlow
 
 from transformers import pipeline
 
-# Force PyTorch backend
 classifier = pipeline(
     "zero-shot-classification",
     model="facebook/bart-large-mnli",
